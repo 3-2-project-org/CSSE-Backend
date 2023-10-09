@@ -3,5 +3,5 @@ export const makeResponse = ({res ,status , data , message}) => {
     if(!data) {
         delete responseData.data
     }
-    res.status(status).json(responseData)
+    res?.status(status).json(responseData)
 }
