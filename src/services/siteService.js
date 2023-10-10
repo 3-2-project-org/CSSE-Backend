@@ -18,39 +18,34 @@ import {
     return response;
   };
   
-  export const deleteExistingProductService = async (productId, sellerId) => {
-    const existingProduct = await findProductById(productId);
-    if (!existingProduct) return { status: 400, message: "Product not found" };
-    if (existingProduct?.seller?._id.toString() !== sellerId)
-      return { status: 401, message: "Not authorized" };
-    const response = await deleteExistingProductByProductIDAndSeller(productId);
+  export const deleteExistingSiteService = async (siteId, managerID) => {
+    const existingSite = await findSiteById(siteId);
+    if (!existingSite) return { status: 400, message: "Site not found" };
+    const response = await deleteExistingSiteByID(siteId);
     return response;
   };
   
-  export const getAllProductsService = async (params) => {
-    const products = await getAllProducts(params);
-    return products;
+  export const getAllSiteService = async (params) => {
+    const sites = await getAllSites(params);
+    return sites;
   };
   
-  export const getSingleProductService = async (productId) => {
-    return await findProductById(productId);
+  export const getSingleSiteService = async (siteId) => {
+    return await findSiteById(siteId);
   };
   
-  export const updateExistingProductService = async (
-    productId,
-    sellerId,
+  export const updateExistingSiteService = async (
+    siteID,
     body
   ) => {
-    const existingProduct = await findProductById(productId);
-    if (!existingProduct) return { status: 400, message: "Product not found" };
-    if (existingProduct?.seller?._id.toString() !== sellerId)
-      return { status: 401, message: "Not authorized" };
-    const response = await updateExistingProductByProductID(productId, body);
+    const existingSite = await findSiteById(siteID);
+    if (!existingSite) return { status: 400, message: "Site not found" };
+    const response = await updateExistingSiteByID(siteID, body);
     return response;
   };
   
-  export const getTotalProductCountBySellerService = async (sellerId) => {
-    const response = await getAllProducts({ sellerId });
+  export const getTotalSiteCountByManagerService = async (managerId) => {
+    const response = await getAllSites({ managerId });
     return response?.total;
   };
   
