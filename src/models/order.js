@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const salesSchema = new mongoose.Schema(
+const orderSchema = new mongoose.Schema(
   {
     products: [
       {
@@ -17,16 +17,28 @@ const salesSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    buyerID: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
     amount: {
       type: Number,
     },
     status: {
       type: String,
       default: "Pending",
+      enum: ["Pending", "Delivered", "Cancelled"],
+    },
+    is_active: {
+      type: Boolean,
+      default: true,
+    },
+    requiredDate: {
+      type: Date,
     },
   },
   { timestamps: true }
 );
 
-const salesModel = mongoose.model("Sales", salesSchema);
-export default salesModel;
+const orderModel = mongoose.model("Order", orderSchema);
+export default orderModel;
