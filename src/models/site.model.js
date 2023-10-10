@@ -11,7 +11,7 @@ const siteSchema = new mongoose.Schema({
     required: true,
   },
   Allocated_budget: {
-    type: String,
+    type: Number,
     required: true,
   },
   Remaining_Budget: {

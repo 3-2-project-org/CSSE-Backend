@@ -1,24 +1,22 @@
 import {
     addSite,
     deleteExistingSiteByID,
-    findBySiteAddressAndManager,
     findSiteById,
     updateExistingSiteByID,
     getAllSites,
   } from "../repositary/siteRepositary";
   
-  export const addNewSiteService = async (site, managerID) => {
-    const existingSite = await findBySiteAddressAndManager(
-      site?.address,
-      managerID
+  export const addNewSiteService = async (site) => {
+    const existingSite = await findSiteById(
+      site?._id,
     );
     if (existingSite)
       return { status: 400, message: "Site already exists" };
-    const response = await addSite({ ...site, manager: managerID });
+    const response = await addSite({ ...site });
     return response;
   };
   
-  export const deleteExistingSiteService = async (siteId, managerID) => {
+  export const deleteExistingSiteService = async (siteId) => {
     const existingSite = await findSiteById(siteId);
     if (!existingSite) return { status: 400, message: "Site not found" };
     const response = await deleteExistingSiteByID(siteId);
