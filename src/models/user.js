@@ -19,7 +19,7 @@ const userSchema = new Mongoose.Schema(
     },
     type: {
       type: String,
-      enum: ["supplier", "admin", "sales manager"],
+      enum: ["supplier", "admin", "sales manager" , "site manager"],
     },
     is_loggedIn: {
       type: Boolean,
