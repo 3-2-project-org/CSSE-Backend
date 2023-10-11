@@ -55,10 +55,7 @@ export const getAllProducts = async (params) => {
   };
 };
 
-export const updateExistingProductByProductID = async (
-  productId,
-  body
-) => {
+export const updateExistingProductByProductID = async (productId, body) => {
   const response = await Product.findByIdAndUpdate(
     productId,
     { ...body },
@@ -68,6 +65,17 @@ export const updateExistingProductByProductID = async (
 };
 
 export const productCountBySeller = async (sellerId) => {
-    const response = await Product.countDocuments({ seller: sellerId });
-    return response;
+  const response = await Product.countDocuments({ seller: sellerId });
+  return response;
+};
+
+export const updateProductQuantity = async (productId, quantity) => {
+  const response = await Product.findByIdAndUpdate(
+    productId,
+    {
+      $inc: { inStock: -quantity },
+    },
+    { new: true }
+  );
+  return response;
 };
