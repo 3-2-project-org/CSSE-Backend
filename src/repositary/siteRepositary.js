@@ -2,7 +2,7 @@ import Site from "../models/site.model";
 
 export const addSite = async (site) => {
   const response = await Site.create(site);
-  return response.populate("site manager");
+  return response.populate("Manager");
 };
 
 export const findBySiteAddressAndManager = async (SiteAddress, ManagerId) => {
@@ -23,7 +23,7 @@ export const deleteExistingSiteByID = async (siteId) => {
 };
 
 export const findSiteById = async (siteId) => {
-  return await Site.findById(siteId).populate("site manager");
+  return await Site.findById(siteId).populate("Manager");
 };
 
 export const getAllSites = async (params) => {
@@ -31,10 +31,10 @@ export const getAllSites = async (params) => {
   let queryparams = {
     is_active: true,
   };
-  if (managerId) queryparams.manager = managerId;
-  if (SiteAddress) queryparams.address = { $regex: SiteAddress, $options: "i" };
+  if (managerId) queryparams.Manager = managerId;
+  if (SiteAddress) queryparams.Address = { $regex: SiteAddress, $options: "i" };
   if (is_active) queryparams.is_active = is_active;
-  let response = Site.find(queryparams).populate("site manager");
+  let response = Site.find(queryparams).populate("Manager");
 
   if (sort) {
     let sortList = sort.split(",").join(" ");
@@ -55,10 +55,7 @@ export const getAllSites = async (params) => {
   };
 };
 
-export const updateExistingSiteByID = async (
-  siteID,
-  body
-) => {
+export const updateExistingSiteByID = async (siteID, body) => {
   const response = await Site.findByIdAndUpdate(
     siteID,
     { ...body },

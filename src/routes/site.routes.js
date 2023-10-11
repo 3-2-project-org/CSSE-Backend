@@ -1,5 +1,12 @@
 import Express from "express";
-import { addNewSite, deleteExistingSite, getAllSites, getSingleSite, getTotalSiteCountByManager, updateExistingSite } from "../controllers/site";
+import {
+  addNewSite,
+  deleteExistingSite,
+  getAllSites,
+  getSingleSite,
+  getTotalSiteCountByManager,
+  updateExistingSite,
+} from "../controllers/site";
 import { verifyAccessToken } from "../middleware/authentication";
 
 const siteRouter = Express.Router();
