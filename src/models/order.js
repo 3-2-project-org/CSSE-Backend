@@ -29,6 +29,9 @@ const orderSchema = new mongoose.Schema(
       default: "Pending",
       enum: ["Pending", "Delivered", "Cancelled"],
     },
+    deliveryAddress: {
+      type: String,
+    },
     is_active: {
       type: Boolean,
       default: true,

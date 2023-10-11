@@ -29,6 +29,14 @@ const userSchema = new Mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    supervisor: {
+      type: Mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+    department: {
+      type: String,
+      enum: ["PROCUREMENT", "MANAGEMENT", "ONSITE"],
+    },
   },
   { timestamps: true }
 );
