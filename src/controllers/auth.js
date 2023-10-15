@@ -1,4 +1,8 @@
-import { authLogin, authRegister, resetPasswordService } from "../services/authServices.js";
+import {
+  authLogin,
+  authRegister,
+  resetPasswordService,
+} from "../services/authServices.js";
 import { makeResponse } from "../utils/response.js";
 import { badRequest } from "../errors/badRequest.js";
 import { generateAccessToken } from "../utils/jwt.js";

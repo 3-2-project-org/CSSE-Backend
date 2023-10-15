@@ -47,9 +47,14 @@ export const getAllProducts = async (params) => {
   const limits = Number(limit) || 10;
   const skips = (pages - 1) * limits;
   response = response.skip(skips).limit(limits);
+  const totalPages = Math.ceil(
+    (await Product.countDocuments(queryparams)) / limits
+  );
+
   return {
     data: await response,
     total: await Product.countDocuments(queryparams),
+    totalPages: totalPages,
     page: pages,
     limit: limits,
   };

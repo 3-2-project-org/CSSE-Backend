@@ -3,6 +3,7 @@ import {
   deleteOrderService,
   getAllOrdersBySellerService,
   getAllOrdersByUserService,
+  getOrderByIdService,
   updateOrderService,
 } from "../services/orderService";
 import { makeResponse } from "../utils/response";
@@ -74,5 +75,19 @@ export const deleteOrder = async (req, res) => {
     status: 200,
     data: response,
     message: "Order deleted successfully",
+  });
+};
+
+export const getOrderById = async (req, res) => {
+  const orderId = req.params.id;
+  const response = await getOrderByIdService(orderId);
+  if (!response)
+    return makeResponse({ res, status: 400, message: "Something went wrong" });
+  // if (response.status) return makeResponse({ res, ...response });
+  makeResponse({
+    res,
+    status: 200,
+    data: response,
+    message: "Order fetched successfully",
   });
 };

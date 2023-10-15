@@ -31,7 +31,7 @@ export const deleteOrderRepositary = async (orderId) => {
 };
 
 export const findOrderById = async (orderId) => {
-  const order = await orderModel.findById(orderId);
+  const order = await orderModel.findById(orderId).populate("products.productID").populate("buyerID").populate("sellerID");
   return order;
 };
 

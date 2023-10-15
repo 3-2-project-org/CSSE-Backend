@@ -77,3 +77,8 @@ export const deleteOrderService = async (orderId, userId) => {
   }
   return order;
 };
+
+export const getOrderByIdService = async (orderId) => {
+  const order = await findOrderById(orderId);
+  return order;
+}

@@ -4,12 +4,14 @@ import {
   deleteOrder,
   getAllOrdersBySeller,
   getAllOrdersByUser,
+  getOrderById,
   updateOrder,
 } from "../controllers/order";
 import { verifyAccessToken } from "../middleware/authentication";
 
 const orderRouter = Express.Router();
 
+orderRouter.get("/:id", verifyAccessToken, getOrderById);
 orderRouter.get("/seller-orders/:id", verifyAccessToken, getAllOrdersBySeller);
 orderRouter.get("/user-orders/:id", verifyAccessToken, getAllOrdersByUser);
 orderRouter.post("/", verifyAccessToken,createOerder);
