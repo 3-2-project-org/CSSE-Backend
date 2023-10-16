@@ -7,6 +7,9 @@ import { makeResponse } from "../utils/response.js";
 import { badRequest } from "../errors/badRequest.js";
 import { generateAccessToken } from "../utils/jwt.js";
 
+
+//Registering User controller
+
 export const registerUser = async (req, res) => {
   const user = await authRegister(req.body);
   if (!user)
@@ -27,6 +30,8 @@ export const registerUser = async (req, res) => {
   });
 };
 
+// Login User controller
+
 export const loginUser = async (req, res) => {
   const user = await authLogin(req.body);
   if (!user)
@@ -41,6 +46,8 @@ export const loginUser = async (req, res) => {
     message: "User login successfull...",
   });
 };
+
+//Password Reset controller
 
 export const resetPassword = async (req, res) => {
   if (req?.body?.password !== req?.body?.confirmPassword)

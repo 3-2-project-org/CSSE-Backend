@@ -1,6 +1,9 @@
 import { getAllPaymentsService, getPaymentByIdService, makePaymentService } from "../services/paymentServices";
 import { makeResponse } from "../utils/response";
 
+
+// Make Payment Controller
+
 export const makePayment = async (req, res) => {
   const response = await makePaymentService(req.body);
   if (!response)
@@ -14,6 +17,8 @@ export const makePayment = async (req, res) => {
   });
 };
 
+//Get All payments Controller
+
 export const getAllPayments = async (req, res) => {
   const response = await getAllPaymentsService(req.query);
   if (!response)
@@ -25,6 +30,9 @@ export const getAllPayments = async (req, res) => {
     message: "Payments fetched successfully",
   });
 };
+
+
+//Get Payment by ID
 
 export const getPaymentById = async (req, res) => {
   const response = await getPaymentByIdService(req.params.id);

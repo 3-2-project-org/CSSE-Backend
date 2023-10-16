@@ -8,6 +8,8 @@ import {
 } from "../services/productService";
 import { makeResponse } from "../utils/response";
 
+//Add product Controller
+
 export const addNewProduct = async (req, res) => {
   const id = req?.user?._id;
   const response = await addNewProductService(req.body, id);
@@ -21,6 +23,8 @@ export const addNewProduct = async (req, res) => {
     message: "Product added successfully",
   });
 };
+
+// Delete Product Controller
 
 export const deleteExistingProduct = async (req, res) => {
   const id = req?.user?._id;
@@ -36,6 +40,8 @@ export const deleteExistingProduct = async (req, res) => {
   });
 };
 
+//Get all products controller
+
 export const getAllProducts = async (req, res) => {
   const params = req.query;
   const products = await getAllProductsService(params);
@@ -49,6 +55,9 @@ export const getAllProducts = async (req, res) => {
   });
 };
 
+
+//Get single product controller 
+
 export const getSingleProduct = async (req, res) => {
   const response = await getSingleProductService(req.params.id);
   if (!response)
@@ -60,6 +69,8 @@ export const getSingleProduct = async (req, res) => {
     message: "Product fetched successfully",
   });
 };
+
+//Update Existing product Controller
 
 export const updateExistingProduct = async (req, res) => {
   const id = req?.user?._id;
@@ -77,6 +88,8 @@ export const updateExistingProduct = async (req, res) => {
     message: "Product updated successfully",
   });
 };
+
+//Get total product count by seller
 
 export const getTotalProductCountBySeller = async (req, res) => {
   const id = req?.user?._id;
