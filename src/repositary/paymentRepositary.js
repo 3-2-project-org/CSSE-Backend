@@ -1,10 +1,14 @@
 import paymentModel from "../models/payment";
 
+
+//make payment
 export const makePaymentRepositary = async (body) => {
   const response = await paymentModel.create(body);
   return response;
 };
 
+
+//get all payment
 export const getAllPaymentsRepositary = async (queries) => {
   const { page, limit, paymentMethod, paymentStatus } = queries;
   const query = {
@@ -27,6 +31,8 @@ export const getAllPaymentsRepositary = async (queries) => {
     limit: limits,
   };
 };
+
+//get payment by ID
 
 export const getPaymentByIdRepositary = async (id) => {
   const response = await paymentModel.findById(id).populate("orderID");
