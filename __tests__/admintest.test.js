@@ -29,7 +29,7 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-describe('Product Controller', () => {
+describe('Site Controller', () => {
     test('It should require authorization', async () => {
       const response = await request(app).get('/api/v1/site');
       expect(response.statusCode).toBe(401);
@@ -43,7 +43,7 @@ describe('Product Controller', () => {
         expect(response.type).toBe('application/json');
       });
     
-      test('It should get all products', async () => {
+      test('It should get all sites', async () => {
         const response = await request(app)
           .get('/api/v1/site')
           .set('Authorization', config.authorization);
@@ -51,7 +51,7 @@ describe('Product Controller', () => {
         expect(response.body).toBeInstanceOf(Object);
       });
 
-      test('It should add a product', async () => {
+      test('It should add a site', async () => {
         const response = await request(app)
           .get('/api/v1/site')
           .set('Authorization', config.authorization);
@@ -59,7 +59,7 @@ describe('Product Controller', () => {
         expect(response.body).toBeInstanceOf(Object);
       });
 
-      test('It should update a product ', async () => {
+      test('It should update a site ', async () => {
         const response = await request(app)
           .get('/api/v1/site')
           .set('Authorization', config.authorization);
@@ -67,7 +67,7 @@ describe('Product Controller', () => {
         expect(response.body).toBeInstanceOf(Object);
       });
 
-      test('It should remove a product ', async () => {
+      test('It should delete a site ', async () => {
         const response = await request(app)
           .get('/api/v1/site')
           .set('Authorization', config.authorization);

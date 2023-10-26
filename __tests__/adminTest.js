@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Site = require('../models/site');
+const Site = require('../src/models/site.model');
 
 beforeAll(async () => {
   // Connect to test database
