@@ -7,8 +7,8 @@ import {
 } from "../repositary/siteRepositary";
 
 export const addNewSiteService = async (site) => {
-  const existingSite = await findSiteById(site?._id);
-  if (existingSite) return { status: 400, message: "Site already exists" };
+  // const existingSite = await findSiteById(site?._id);
+  // if (existingSite) return { status: 400, message: "Site already exists" };
   const response = await addSite({ ...site });
   return response;
 };

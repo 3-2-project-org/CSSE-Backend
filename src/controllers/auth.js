@@ -6,6 +6,7 @@ import {
 import { makeResponse } from "../utils/response.js";
 import { badRequest } from "../errors/badRequest.js";
 import { generateAccessToken } from "../utils/jwt.js";
+import userModel from "../models/user.js";
 
 export const registerUser = async (req, res) => {
   const user = await authRegister(req.body);
@@ -59,5 +60,59 @@ export const resetPassword = async (req, res) => {
     status: 200,
     data: otherDetails,
     message: "Reset password process successfull...",
+  });
+};
+
+export const getAllUsers = async (req, res) => {
+  const query = req.query;
+  const { type } = query;
+  const users = await userModel.find({ type });
+  if (!users)
+    return makeResponse({
+      res,
+      status: 400,
+      message: "Failed to fetch users...",
+    });
+  return makeResponse({
+    res,
+    status: 200,
+    data: users,
+    message: "Users fetched successfully...",
+  });
+};
+
+export const editUser = async (req, res) => {
+  console.log(req.body);
+  const { id } = req.params;
+  console.log(id);
+  const response = await userModel.findByIdAndUpdate(id, req.body);
+  if (!response)
+    return makeResponse({
+      res,
+      status: 400,
+      message: "Failed to edit user...",
+    });
+  return makeResponse({
+    res,
+    status: 200,
+    data: response,
+    message: "User edited successfully...",
+  });
+};
+
+export const getUserById = async (req, res) => {
+  const { id } = req.params;
+  const response = await userModel.findById(id);
+  if (!response)
+    return makeResponse({
+      res,
+      status: 400,
+      message: "Failed to fetch user...",
+    });
+  return makeResponse({
+    res,
+    status: 200,
+    data: response,
+    message: "User fetched successfully...",
   });
 };

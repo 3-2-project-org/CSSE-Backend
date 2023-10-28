@@ -9,6 +9,7 @@ import {
 import { makeResponse } from "../utils/response";
 
 export const addNewSite = async (req, res) => {
+  console.log(req.body);
   const response = await addNewSiteService(req.body);
   if (!response)
     return makeResponse({ res, status: 400, message: "Something went wrong" });
