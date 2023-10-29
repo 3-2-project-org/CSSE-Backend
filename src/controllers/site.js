@@ -8,6 +8,8 @@ import {
 } from "../services/siteService";
 import { makeResponse } from "../utils/response";
 
+//Add New Site Controller
+
 export const addNewSite = async (req, res) => {
   console.log(req.body);
   const response = await addNewSiteService(req.body);
@@ -22,6 +24,8 @@ export const addNewSite = async (req, res) => {
   });
 };
 
+//Delete Site Controller
+
 export const deleteExistingSite = async (req, res) => {
   const response = await deleteExistingSiteService(req.params.id);
   if (!response)
@@ -34,6 +38,8 @@ export const deleteExistingSite = async (req, res) => {
     message: "Site deleted successfully",
   });
 };
+
+//get all sites controller
 
 export const getAllSites = async (req, res) => {
   const params = req.query;
@@ -48,6 +54,8 @@ export const getAllSites = async (req, res) => {
   });
 };
 
+//Get Single Site controller
+
 export const getSingleSite = async (req, res) => {
   const response = await getSingleSiteService(req.params.id);
   if (!response)
@@ -59,6 +67,8 @@ export const getSingleSite = async (req, res) => {
     message: "Site fetched successfully",
   });
 };
+
+//Update existing Site controller
 
 export const updateExistingSite = async (req, res) => {
   const siteId = req.params.id;
@@ -75,6 +85,8 @@ export const updateExistingSite = async (req, res) => {
     message: "Site updated successfully",
   });
 };
+
+//Get site count by manager
 
 export const getTotalSiteCountByManager = async (req, res) => {
   const id = req.params.manager;

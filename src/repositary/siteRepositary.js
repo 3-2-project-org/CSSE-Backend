@@ -1,9 +1,14 @@
 import Site from "../models/site.model";
 
+
+//Add Site
+
 export const addSite = async (site) => {
   const response = await Site.create(site);
   return response.populate("Manager");
 };
+
+//find by site address and manager
 
 export const findBySiteAddressAndManager = async (SiteAddress, ManagerId) => {
   const site = await Site.findOne({
@@ -12,6 +17,9 @@ export const findBySiteAddressAndManager = async (SiteAddress, ManagerId) => {
   });
   return site;
 };
+
+
+//Delete site by ID
 
 export const deleteExistingSiteByID = async (siteId) => {
   const response = await Site.findByIdAndUpdate(
@@ -22,9 +30,15 @@ export const deleteExistingSiteByID = async (siteId) => {
   return response;
 };
 
+
+//Find Site BY ID
+
 export const findSiteById = async (siteId) => {
   return await Site.findById(siteId).populate("Manager");
 };
+
+
+//Get all sites
 
 export const getAllSites = async (params) => {
   const { sort, managerId, SiteAddress, is_active, page, limit } = params;
@@ -54,6 +68,8 @@ export const getAllSites = async (params) => {
     limit: limits,
   };
 };
+
+// Update existing site by ID
 
 export const updateExistingSiteByID = async (siteID, body) => {
   const response = await Site.findByIdAndUpdate(

@@ -8,6 +8,8 @@ import {
 } from "../services/orderService";
 import { makeResponse } from "../utils/response";
 
+//Create Order Controller
+
 export const createOerder = async (req, res) => {
   const userId = req?.user?._id;
   const response = await createOrderService(req.body, userId);
@@ -23,6 +25,8 @@ export const createOerder = async (req, res) => {
   });
 };
 
+//Get all orders controller
+
 export const getAllOrdersBySeller = async (req, res) => {
   const userId = req.params.id;
   const response = await getAllOrdersBySellerService(userId);
@@ -37,6 +41,8 @@ export const getAllOrdersBySeller = async (req, res) => {
   });
 };
 
+//Get all orders by ID 
+
 export const getAllOrdersByUser = async (req, res) => {
   const userId = req.params.id;
   const response = await getAllOrdersByUserService(userId);
@@ -49,6 +55,8 @@ export const getAllOrdersByUser = async (req, res) => {
     message: "Orders fetched successfully",
   });
 };
+
+//Update Order
 
 export const updateOrder = async (req, res) => {
   const orderId = req.params.id;
@@ -64,6 +72,9 @@ export const updateOrder = async (req, res) => {
   });
 };
 
+
+//Delete Order
+
 export const deleteOrder = async (req, res) => {
   const orderId = req.params.id;
   const response = await deleteOrderService(orderId);
@@ -77,6 +88,9 @@ export const deleteOrder = async (req, res) => {
     message: "Order deleted successfully",
   });
 };
+
+
+//GetOrderByID
 
 export const getOrderById = async (req, res) => {
   const orderId = req.params.id;

@@ -7,6 +7,8 @@ import {
 } from "../services/deliveryService";
 import { makeResponse } from "../utils/response";
 
+//Create Delivery controller
+
 export const createDilivery = async (req, res) => {
   const userId = req?.user?._id;
   const response = await createDiliveryService(req.body, userId);
@@ -21,6 +23,8 @@ export const createDilivery = async (req, res) => {
   });
 };
 
+//Get Delivery By User ID controller
+
 export const getAllDeliveriesByUser = async (req, res) => {
   const userId = req.params.id;
   const response = await getAllDeliveriesByUserService(userId);
@@ -34,6 +38,8 @@ export const getAllDeliveriesByUser = async (req, res) => {
   });
 };
 
+//Update Delivery controller
+
 export const updateDilivery = async (req, res) => {
   const id = req.params.id;
   const response = await updateDiliveryService(id, req.body);
@@ -46,6 +52,8 @@ export const updateDilivery = async (req, res) => {
     message: "Delivery updated successfully",
   });
 };
+
+//Delete Delivery controller
 
 export const deleteDelivery = async (req, res) => {
   const id = req.params.id;
