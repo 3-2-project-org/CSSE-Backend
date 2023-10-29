@@ -6,36 +6,39 @@ export const createTaskRepositary = async (body) => {
 };
 
 export const getAllTasksRepositary = async (queries) => {
-  const { taskPriority, taskStatus, assignedTo, sort, page, limit } = queries;
-  const query = {
-    is_active: true,
-  };
-  if (taskPriority) query.taskPriority = taskPriority;
-  if (taskStatus) query.taskStatus = taskStatus;
-  if (assignedTo) query.assignedTo = assignedTo;
+  // const { taskPriority, taskStatus, assignedTo, sort, page, limit } = queries;
+  // const query = {
+  //   // is_active: true,
+  // };
+  // if (taskPriority) query.taskPriority = taskPriority;
+  // if (taskStatus) query.taskStatus = taskStatus;
+  // if (assignedTo) query.assignedTo = assignedTo;
 
-  let response = taskModel.find(query).populate("assignedTo", "createdBy");
+  // let response =  taskModel.find(query)
 
-  if (sort) {
-    let sortList = sort.split(",").join(" ");
-    response = response?.sort(sortList);
-  } else {
-    if (response.length > 0) response = response?.sort("createdAt");
-  }
+  // if (sort) {
+  //   let sortList = sort.split(",").join(" ");
+  //   response = response?.sort(sortList);
+  // } else {
+  //   if (response.length > 0) response = response?.sort("createdAt");
+  // }
 
-  const pages = Number(page) || 1;
-  const limits = Number(limit) || 10;
-  const skips = (pages - 1) * limits;
-  response = response.skip(skips).limit(limits);
+  // const pages = Number(page) || 1;
+  // const limits = Number(limit) || 10;
+  // const skips = (pages - 1) * limits;
+  // response = response.skip(skips).limit(limits);
 
-  const totalPages = Math.ceil((await response).length / limits);
-  return {
-    data: await response,
-    total: await Product.countDocuments(queryparams),
-    page: pages,
-    limit: limits,
-    no_pages: totalPages,
-  };
+  // const totalPages = Math.ceil((await response).length / limits);
+  // return {
+  //   data: await response,
+  //   total: await taskModel.countDocuments(queryparams),
+  //   page: pages,
+  //   limit: limits,
+  //   no_pages: totalPages,
+  // };
+
+  const response = await taskModel.find();
+  return response;
 };
 
 export const getTaskByIdRepositary = async (id) => {

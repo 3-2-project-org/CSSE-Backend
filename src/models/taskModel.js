@@ -28,44 +28,9 @@ const taskSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    createdBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
     is_active: {
       type: Boolean,
       default: true,
-    },
-    comments: [
-      {
-        comment: {
-          type: String,
-        },
-        commentedBy: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-        },
-      },
-    ],
-    attachments: [
-      {
-        attachment: {
-          type: String,
-        },
-        attachedBy: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-        },
-      },
-    ],
-    taskStartDate: {
-      type: Date,
-    },
-    taskEndDate: {
-      type: Date,
-    },
-    taskSpan: {
-      type: Number,
     },
   },
   { timestamps: true }

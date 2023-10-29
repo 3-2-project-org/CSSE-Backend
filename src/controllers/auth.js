@@ -66,7 +66,12 @@ export const resetPassword = async (req, res) => {
 export const getAllUsers = async (req, res) => {
   const query = req.query;
   const { type } = query;
-  const users = await userModel.find({ type });
+  console.log(query);
+  const queries = {  };
+  if (type) {
+    queries.type = type;
+  }
+  const users = await userModel.find(queries);
   if (!users)
     return makeResponse({
       res,
