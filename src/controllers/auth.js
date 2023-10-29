@@ -8,7 +8,6 @@ import { badRequest } from "../errors/badRequest.js";
 import { generateAccessToken } from "../utils/jwt.js";
 import userModel from "../models/user.js";
 
-
 //Registering User controller
 
 export const registerUser = async (req, res) => {
@@ -74,7 +73,9 @@ export const getAllUsers = async (req, res) => {
   const query = req.query;
   const { type } = query;
   console.log(query);
-  const queries = {  };
+  const queries = {
+    is_active: true,
+  };
   if (type) {
     queries.type = type;
   }
@@ -126,5 +127,22 @@ export const getUserById = async (req, res) => {
     status: 200,
     data: response,
     message: "User fetched successfully...",
+  });
+};
+
+export const deleteUser = async (req, res) => {
+  const { id } = req.params;
+  const response = await userModel.findByIdAndUpdate(id, { is_active: false });
+  if (!response)
+    return makeResponse({
+      res,
+      status: 400,
+      message: "Failed to delete user...",
+    });
+  return makeResponse({
+    res,
+    status: 200,
+    data: response,
+    message: "User deleted successfully...",
   });
 };
